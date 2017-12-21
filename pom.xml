@@ -17,8 +17,8 @@
         <allure.version>1.5.4</allure.version>
         <selenide.timeout>40000</selenide.timeout>
         <selenide.closeBrowserTimeout>30000</selenide.closeBrowserTimeout>
-        <!--<webdriver.chrome.driver>chromedriver.exe</webdriver.chrome.driver>-->
-        <webdriver.chrome.driver>chromedriver_mac</webdriver.chrome.driver>
+        <webdriver.chrome.driver>chromedriver.exe</webdriver.chrome.driver>
+        <!--<webdriver.chrome.driver>chromedriver_mac</webdriver.chrome.driver>-->
         <selenide.browser>chrome</selenide.browser>
 
     </properties>
