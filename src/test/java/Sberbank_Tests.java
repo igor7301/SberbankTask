@@ -40,18 +40,38 @@ public class Sberbank_Tests extends Abstract {
         searchRequest.setEndPrice(BigDecimal.valueOf(30000));
         searchRequest.setManufacturer(Arrays.asList("Lenovo", "HP"));
 
+        //1. Открыть браузер и развернуть на весь экран.
+        //2. Зайти на yandex.ru.
         commonSteps.navigate("https://yandex.ru");
-        yandexSteps.openMarket();
-        yandexSteps.openMainDepartment("Компьютеры");
-        yandexSteps.openSubDepartment("Ноутбуки");
-        yandexSteps.applyFilter(searchRequest);
-//        yandexSteps.verifyAmountOfResults(48);
 
+        //3. Перейти в яндекс маркет
+        yandexSteps.openMarket();
+
+        //4. Выбрать раздел Компьютеры
+        yandexSteps.openMainDepartment("Компьютеры");
+
+        //5. Выбрать раздел Ноутбуки
+        yandexSteps.openSubDepartment("Ноутбуки");
+
+        //6. Зайти в расширенный поиск
+        //7. Задать параметр поиска до 30000 рублей.
+        //8. Выбрать производителя HP и Lenovo
+        //9. Нажать кнопку Применить.
+        yandexSteps.applyFilter(searchRequest);
+
+        //10. Проверить, что элементов на странице 10.
+        // по факту результатов больше 10 - поэму данная проверка не пройдет
+//        yandexSteps.verifyAmountOfResults(10);
+
+        //11. Запомнить первый элемент в списке.
         searchRequest = new SearchRequest();
         String productName = new YandexMarketPage().getResults().get(0).getProductName();
         searchRequest.setProductName(productName);
 
+        //12. В поисковую строку ввести запомненное значение.
         yandexSteps.makeSearch(searchRequest.getProductName());
+
+        //13. Найти и проверить, что наименование товара соответствует запомненному значению.
         yandexSteps.verifyResults(searchRequest);
 
     }
@@ -67,18 +87,40 @@ public class Sberbank_Tests extends Abstract {
         searchRequest.setEndPrice(BigDecimal.valueOf(25000));
         searchRequest.setManufacturer(Arrays.asList("Acer", "Dell"));
 
+        //1. Открыть браузер и развернуть на весь экран.
+        //2. Зайти на yandex.ru.
         commonSteps.navigate("https://yandex.ru");
-        yandexSteps.openMarket();
-        yandexSteps.openMainDepartment("Компьютеры");
-        yandexSteps.openSubDepartment("Планшеты");
-        yandexSteps.applyFilter(searchRequest);
-//        yandexSteps.verifyAmountOfResults(48);
 
+        //3. Перейти в яндекс маркет
+        yandexSteps.openMarket();
+
+        //4. Выбрать раздел  Компьютеры
+        yandexSteps.openMainDepartment("Компьютеры");
+
+        //5. Выбрать раздел Планшеты
+        yandexSteps.openSubDepartment("Планшеты");
+
+        //6. Зайти в расширенный поиск
+        //7. Задать параметр поиска от 20000 рублей.
+        //8. Задать параметр поиска до 25000 рублей.
+        //9. Выбрать производителей Acer и DELL
+        //10. Нажать кнопку Применить.
+        yandexSteps.applyFilter(searchRequest);
+
+        //11. Проверить, что элементов на странице 10.
+        // по факту результатов больше 10 - поэму данная проверка не пройдет
+//        yandexSteps.verifyAmountOfResults(10);
+
+        //12. Запомнить первый элемент в списке.
         searchRequest = new SearchRequest();
         String productName = new YandexMarketPage().getResults().get(0).getProductName();
         searchRequest.setProductName(productName);
 
+
+        //13. В поисковую строку ввести запомненное значение.
         yandexSteps.makeSearch(searchRequest.getProductName());
+
+        //14. Найти и проверить, что наименование товара соответствует запомненному значению.
         yandexSteps.verifyResults(searchRequest);
 
     }
