@@ -1,16 +1,14 @@
 import com.Application.WebDriverFactory;
 import com.codeborne.selenide.WebDriverRunner;
-import org.junit.After;
-import org.junit.Before;
 
 import java.net.MalformedURLException;
 
+import static com.Utils.Utils.makeScreenshot;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
 public class Abstract {
 
 
-    @Before
     public void setup() {
 
         try {
@@ -21,9 +19,10 @@ public class Abstract {
 
     }
 
-    @After
+
     public void tearDown() {
 
+        makeScreenshot();
         closeWebDriver();
 
     }

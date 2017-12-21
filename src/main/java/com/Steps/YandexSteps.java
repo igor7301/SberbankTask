@@ -1,16 +1,13 @@
 package com.Steps;
 
-import com.Departments;
 import com.PageObjects.*;
-import com.ProductItem;
 import com.SearchRequest;
 import io.qameta.allure.Step;
 import org.hamcrest.Matchers;
 
-import java.util.List;
-
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
-import static org.hamcrest.MatcherAssert.assertThat;
+import static com.Utils.AllureAsserts.allureAssertThat;
+import static com.Utils.Utils.makeScreenshot;
+import static com.Utils.Utils.makeScreenshotFullPage;
 
 
 public class YandexSteps {
@@ -19,8 +16,8 @@ public class YandexSteps {
     @Step("I open yandex market")
     public void openMarket() {
         new YandexHomePage().openMarket();
+        makeScreenshot();
     }
-
 
 
     @Step("I apply filter with params ... ")
@@ -45,6 +42,7 @@ public class YandexSteps {
 
 
         yandexFilter.apply();
+        makeScreenshotFullPage();
 
 
     }
@@ -54,20 +52,11 @@ public class YandexSteps {
 
         YandexMarketPage yandexMarketPage = new YandexMarketPage();
         yandexMarketPage.getResults();
-        assertThat("Amount of product items should be : \"" + resultsNumber + "\"",
-                yandexMarketPage.getResults().size(), Matchers.is(resultsNumber));
+        allureAssertThat("Amount of product items should be : \"" + resultsNumber + "\"",
+                yandexMarketPage.getResults().size(), Matchers.is(resultsNumber), false);
 
     }
 
-    public List<ProductItem> getResults() {
-
-        return new YandexMarketPage().getResults();
-    }
-
-    public void verifyProductItem(int productNumber, ProductItem expectedItem) {
-
-        throw new RuntimeException("Implement me!");
-    }
 
     public void makeSearch(String searchText) {
         new YandexHeader().makeSearch(searchText);
@@ -93,9 +82,12 @@ public class YandexSteps {
         }
 
         if (searchRequest.getProductName() != null) {
-            assertThat("Product title on results page should be : " + searchRequest.getProductName(),
-                    yandexResultPage.getTitleOfProduct(), Matchers.equalToIgnoringCase(searchRequest.getProductName()));
+            allureAssertThat("Product title on results page should be : " + searchRequest.getProductName(),
+                    yandexResultPage.getTitleOfProduct(), Matchers.equalToIgnoringCase(searchRequest.getProductName()),
+                    false);
         }
+
+        makeScreenshot();
 
 
     }
@@ -106,6 +98,7 @@ public class YandexSteps {
         YandexMarketAbstractPage yandexMarketPage = YandexMarketPageFactory.getPage();
         yandexMarketPage.openNavPanel();
         yandexMarketPage.openMainDepartment(depName);
+        makeScreenshot();
 
     }
 
@@ -113,5 +106,6 @@ public class YandexSteps {
     public void openSubDepartment(String depName) {
 
         YandexMarketPageFactory.getPage().openSubDepartment(depName);
+        makeScreenshot();
     }
 }

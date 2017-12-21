@@ -14,8 +14,6 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
-import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
-
 public class Sberbank_Tests extends Abstract {
 
 
@@ -46,7 +44,6 @@ public class Sberbank_Tests extends Abstract {
         yandexSteps.openMarket();
         yandexSteps.openMainDepartment("Компьютеры");
         yandexSteps.openSubDepartment("Ноутбуки");
-       // yandexSteps.chooseExpandSearch();
         yandexSteps.applyFilter(searchRequest);
 //        yandexSteps.verifyAmountOfResults(48);
 
@@ -74,7 +71,6 @@ public class Sberbank_Tests extends Abstract {
         yandexSteps.openMarket();
         yandexSteps.openMainDepartment("Компьютеры");
         yandexSteps.openSubDepartment("Планшеты");
-        // yandexSteps.chooseExpandSearch();
         yandexSteps.applyFilter(searchRequest);
 //        yandexSteps.verifyAmountOfResults(48);
 
