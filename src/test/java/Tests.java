@@ -1,4 +1,5 @@
 import com.Departments;
+import com.PageObjects.YandexMarketPage;
 import com.ProductItem;
 import com.SearchRequest;
 import com.Steps.CommonSteps;
@@ -35,25 +36,26 @@ public class Tests extends AbstractTest {
         searchRequest.setEndPrice(BigDecimal.valueOf(30000));
         searchRequest.setManufacturer(Arrays.asList("Lenovo", "HP"));
 
-        commonSteps.navigate("http://yandex.ru");
+        commonSteps.navigate("https://yandex.ru");
         yandexSteps.openMarket();
-        yandexSteps.openDepartment(Departments.NOTEBOOKS);
+       // yandexSteps.openDepartment(Departments.NOTEBOOKS);
+        yandexSteps.openMainDepartment("Компьютеры");
+        yandexSteps.openSubDepartment("Ноутбуки");
        // yandexSteps.chooseExpandSearch();
-        yandexSteps.makeSearch(searchRequest);
-        yandexSteps.verifyAmountOfResults(10);
+        yandexSteps.applyFilter(searchRequest);
+       // yandexSteps.verifyAmountOfResults(48);
 
         searchRequest = new SearchRequest();
-        String productName  = yandexSteps.getResults().get(0).getProductName();
+        String productName = new YandexMarketPage().getResults().get(0).getProductName();
         searchRequest.setProductName(productName);
 
-        yandexSteps.makeSearch(searchRequest);
+        yandexSteps.makeSearch(searchRequest.getProductName());
+        yandexSteps.verifyResults(searchRequest);
 
-        yandexSteps.verifyAmountOfResults(1);
 
-
-        ProductItem expectedItem = new ProductItem();
-        expectedItem.setProductName(productName);
-        yandexSteps.verifyProductItem(1, expectedItem);
+//        ProductItem expectedItem = new ProductItem();
+//        expectedItem.setProductName(productName);
+//        yandexSteps.verifyProductItem(1, expectedItem);
 
 
 
