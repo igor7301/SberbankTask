@@ -21,13 +21,13 @@ public class YandexFilter {
     public static final String SPINNER = ".preloadable__preloader";
 
 
-    @Step("I set price from {startPrice}")
+    @Step("I set price from \"{startPrice}\"")
     public void setStartPrice(BigDecimal startPrice) {
         $(START_PRICE).setValue(startPrice.toString());
     }
 
 
-    @Step("I set price to {endPrice}")
+    @Step("I set price to \"{endPrice}\"")
     public void setEndPrice(BigDecimal endPrice) {
         $(END_PRICE).setValue(endPrice.toString());
     }
@@ -58,9 +58,5 @@ public class YandexFilter {
         }
     }
 
-    @Step("I set product name {productName}")
-    public void setProductName(String productName) {
 
-        $("");
-    }
 }

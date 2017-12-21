@@ -18,33 +18,17 @@ public class YandexSteps {
 
     @Step("I open yandex market")
     public void openMarket() {
-
-      new YandexHomePage().openMarket();
-
+        new YandexHomePage().openMarket();
     }
 
-    @Step("I open \"{department}\" department form main navigation panel")
-    public void openDepartment(Departments department) {
 
-        YandexMarketPage yandexMarketPage = new YandexMarketPage();
-        yandexMarketPage.openNavPanel();
-
-        switch (department) {
-            case NOTEBOOKS:
-                yandexMarketPage.openNotebooks();
-                break;
-
-
-        }
-
-    }
 
     @Step("I apply filter with params ... ")
     public void applyFilter(SearchRequest searchRequest) {
 
         YandexFilter yandexFilter = new YandexFilter();
         if (searchRequest.getStartPrice() != null) {
-           yandexFilter.setStartPrice(searchRequest.getStartPrice());
+            yandexFilter.setStartPrice(searchRequest.getStartPrice());
         }
 
         if (searchRequest.getEndPrice() != null) {
@@ -59,22 +43,17 @@ public class YandexSteps {
             }
         }
 
-        if(searchRequest.getProductName() != null) {
-            yandexFilter.setProductName(searchRequest.getProductName());
-        }
 
         yandexFilter.apply();
 
 
-
     }
 
+    @Step("I verify amount of product items on page ...")
     public void verifyAmountOfResults(int resultsNumber) {
 
-        YandexMarketPage yandexMarketPage =  new YandexMarketPage();
-
+        YandexMarketPage yandexMarketPage = new YandexMarketPage();
         yandexMarketPage.getResults();
-
         assertThat("Amount of product items should be : \"" + resultsNumber + "\"",
                 yandexMarketPage.getResults().size(), Matchers.is(resultsNumber));
 
@@ -113,7 +92,7 @@ public class YandexSteps {
             }
         }
 
-        if(searchRequest.getProductName() != null) {
+        if (searchRequest.getProductName() != null) {
             assertThat("Product title on results page should be : " + searchRequest.getProductName(),
                     yandexResultPage.getTitleOfProduct(), Matchers.equalToIgnoringCase(searchRequest.getProductName()));
         }
@@ -121,18 +100,18 @@ public class YandexSteps {
 
     }
 
-    @Step("I open department with name \"{depName}\" ")
+    @Step("I open main department with name \"{depName}\" ")
     public void openMainDepartment(String depName) {
-        YandexMarketPage yandexMarketPage = new YandexMarketPage();
+
+        YandexMarketAbstractPage yandexMarketPage = YandexMarketPageFactory.getPage();
         yandexMarketPage.openNavPanel();
         yandexMarketPage.openMainDepartment(depName);
 
     }
 
-    @Step("I open sub department with name \"{depName}\" ")
+    @Step("I open sub-department with name \"{depName}\" ")
     public void openSubDepartment(String depName) {
 
-        new YandexMarketPage().openSubDepartment(depName);
-
+        YandexMarketPageFactory.getPage().openSubDepartment(depName);
     }
 }
