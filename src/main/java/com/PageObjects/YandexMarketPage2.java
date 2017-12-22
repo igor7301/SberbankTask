@@ -1,6 +1,7 @@
 package com.PageObjects;
 
 import com.ProductItem;
+import com.Utils.Constants;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
@@ -10,6 +11,7 @@ import io.qameta.allure.Step;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.Utils.Constants.*;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
@@ -55,7 +57,7 @@ public class YandexMarketPage2 extends   YandexMarketAbstractPage{
             if (departmentElement.getText().equalsIgnoreCase(departmentName)) {
 
                 departmentElement.hover();
-                Selenide.sleep(1000);
+                Selenide.sleep(TIMEOUT_IN_MILLISECONDS_1000);
                 departmentElement.$(SUB_DEPARTMENTS_LIST).shouldBe(Condition.visible);
                 return;
             }

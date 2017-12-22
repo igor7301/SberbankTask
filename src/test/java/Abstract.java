@@ -12,7 +12,7 @@ public class Abstract {
     public void setup() {
 
         try {
-            WebDriverRunner.setWebDriver(WebDriverFactory.getChromeDriver());
+            WebDriverRunner.setWebDriver(WebDriverFactory.getInstance());
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

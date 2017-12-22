@@ -1,24 +1,30 @@
 package com.PageObjects;
 
+import com.Application.CustomWebDriverEventListener;
+import com.Utils.Constants;
+import com.Utils.Utils;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.math.BigDecimal;
 
+import static com.Utils.Constants.TIMEOUT_IN_MILLISECONDS_10000;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 public class YandexFilter {
 
+    private final static Logger LOGGER = LogManager.getLogger(YandexFilter.class);
 
     private static final String START_PRICE = ".n-filter-panel-aside .input_price_from .input__control";
     private static final String END_PRICE = ".n-filter-panel-aside .input_price_to .input__control";
     private static final String MANUFACTURE_LIST = ".n-filter-panel-aside__content .n-filter-block:nth-child(4) .checkbox";
-    //  private static final String MANUFACTURE_NAME = ".checkbox__control";
     private static final String MANUFACTURE_CHECK_BOX = ".checkbox__label";
-    public static final String APPLY_FILTER_BTN = ".n-filter-panel-aside__apply button";
-    public static final String SPINNER = ".preloadable__preloader";
+    private static final String APPLY_FILTER_BTN = ".n-filter-panel-aside__apply button";
+    private static final String SPINNER = ".preloadable__preloader";
 
 
     @Step("I set price from \"{startPrice}\"")
@@ -49,12 +55,19 @@ public class YandexFilter {
         waitUntilResultsUpdated();
     }
 
+    /**
+     * Wait until results are updating
+     */
     private void waitUntilResultsUpdated() {
         try {
-            $(SPINNER).waitUntil(Condition.visible, 10000);
+
+            $(SPINNER).waitUntil(Condition.visible, TIMEOUT_IN_MILLISECONDS_10000);
             $(SPINNER).should(Condition.disappear);
+
         } catch (Error e) {
 
+            LOGGER.warn("Can't find spinner ... ");
+            e.printStackTrace();
         }
     }
 
