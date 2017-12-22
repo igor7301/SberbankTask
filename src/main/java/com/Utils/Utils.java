@@ -1,6 +1,5 @@
 package com.Utils;
 
-import com.Application.CustomWebDriverEventListener;
 import com.codeborne.selenide.Selenide;
 import io.qameta.allure.Attachment;
 import org.apache.logging.log4j.LogManager;
@@ -15,18 +14,30 @@ import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
-import static com.Utils.Constants.*;
+import static com.Utils.Constants.TIMEOUT_IN_MILLISECONDS_100;
 import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
+/**
+ * Вспомогательный класс
+ */
 public class Utils {
 
     private final static Logger LOGGER = LogManager.getLogger(Utils.class);
 
+    /**
+     * Делает скриншот видимой части страницы
+     * @return скриншот видимой части страницы в виде byte[]
+     */
     @Attachment("Screenshot")
     public static byte[] makeScreenshot() {
         return ((TakesScreenshot) getWebDriver()).getScreenshotAs(OutputType.BYTES);
     }
 
+    /**
+     * Делает скриншот всей страницы, постепенно проскроливая страницу вниз
+     * При достижении конца страницы, скроллим страницу обратно в начало
+     * @return скриншот всей страницы в виде byte[]
+     */
     @Attachment("Screenshot")
     public static byte[] makeScreenshotFullPage() {
 
@@ -40,6 +51,11 @@ public class Utils {
 
     }
 
+    /**
+     * Конвертирует BufferedImage в byte[]
+     * @param image
+     * @return byte[]
+     */
     private static byte[] convertToByte(BufferedImage image) {
 
         try {
@@ -61,7 +77,10 @@ public class Utils {
         return null;
     }
 
-
+    /**
+     * Скроллим страницу наверх
+     * В случае возникновения ошибки метод выводит stackTrace но не прерывает свою работу
+     */
     public static void scrollToTop() {
 
         try {

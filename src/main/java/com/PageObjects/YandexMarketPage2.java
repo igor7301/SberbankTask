@@ -1,22 +1,21 @@
 package com.PageObjects;
 
 import com.ProductItem;
-import com.Utils.Constants;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.Selenide;
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.Utils.Constants.*;
+import static com.Utils.Constants.TIMEOUT_IN_MILLISECONDS_1000;
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
 
 /**
  * Created by Igor on 12/21/2017.
+ * Одна из версий страницы яндекс маркета
  */
 public class YandexMarketPage2 extends YandexMarketAbstractPage {
 

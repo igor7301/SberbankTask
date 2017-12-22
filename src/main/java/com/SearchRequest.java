@@ -3,11 +3,21 @@ package com;
 import java.math.BigDecimal;
 import java.util.List;
 
+/**
+ * Класс для хранения параметров поиска для яндекс фильтра
+ */
 public class SearchRequest {
 
+    //Название продукта
     private String productName;
+
+    //Начальная цена
     private BigDecimal startPrice;
+
+    //Конечная цена
     private BigDecimal endPrice;
+
+    //Фирмы прозводители
     private List<String> manufacturer;
 
     public void setStartPrice(BigDecimal startPrice) {

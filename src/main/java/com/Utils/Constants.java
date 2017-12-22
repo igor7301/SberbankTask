@@ -1,7 +1,7 @@
 package com.Utils;
 
 /**
- * Created by Igor on 12/22/2017.
+ * Класс констант для задания таймаутов
  */
 public class Constants {
 

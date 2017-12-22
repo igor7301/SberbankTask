@@ -9,9 +9,14 @@ import org.openqa.selenium.support.events.WebDriverEventListener;
 
 import java.util.Arrays;
 
+/**
+ *  Слушатель для событий вебдрайвера
+ *  Переопределяем методы для логирования событий вебрайвера
+ */
 public class CustomWebDriverEventListener implements WebDriverEventListener {
 
     private final static Logger LOGGER = LogManager.getLogger(CustomWebDriverEventListener.class);
+
 
     @Override
     public void beforeAlertAccept(WebDriver webDriver) {

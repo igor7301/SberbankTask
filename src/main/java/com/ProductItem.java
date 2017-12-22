@@ -1,6 +1,12 @@
 package com;
 
+
+/**
+ * Класс для хранения информации о продукте, полученном в результате поиска
+ */
 public class ProductItem {
+
+    //Название продукта
     private String productName;
 
     public String getProductName() {

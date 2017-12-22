@@ -14,6 +14,10 @@ import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Arrays;
 
+
+/**
+ * Основной класс для запуска тестов
+ */
 public class Sberbank_Tests extends Abstract {
 
 
@@ -36,10 +40,6 @@ public class Sberbank_Tests extends Abstract {
     @Feature("Yandex")
     public void test_1() {
 
-        SearchRequest searchRequest = new SearchRequest();
-        searchRequest.setEndPrice(BigDecimal.valueOf(30000));
-        searchRequest.setManufacturer(Arrays.asList("Lenovo", "HP"));
-
         //1. Открыть браузер и развернуть на весь экран.
         //2. Зайти на yandex.ru.
         commonSteps.navigate("https://yandex.ru");
@@ -57,6 +57,9 @@ public class Sberbank_Tests extends Abstract {
         //7. Задать параметр поиска до 30000 рублей.
         //8. Выбрать производителя HP и Lenovo
         //9. Нажать кнопку Применить.
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.setEndPrice(BigDecimal.valueOf(30000));
+        searchRequest.setManufacturer(Arrays.asList("Lenovo", "HP"));
         yandexSteps.applyFilter(searchRequest);
 
         //10. Проверить, что элементов на странице 10.
@@ -82,10 +85,6 @@ public class Sberbank_Tests extends Abstract {
     @Feature("Yandex")
     public void test_2() {
 
-        SearchRequest searchRequest = new SearchRequest();
-        searchRequest.setStartPrice(BigDecimal.valueOf(20000));
-        searchRequest.setEndPrice(BigDecimal.valueOf(25000));
-        searchRequest.setManufacturer(Arrays.asList("Acer", "Dell"));
 
         //1. Открыть браузер и развернуть на весь экран.
         //2. Зайти на yandex.ru.
@@ -105,6 +104,10 @@ public class Sberbank_Tests extends Abstract {
         //8. Задать параметр поиска до 25000 рублей.
         //9. Выбрать производителей Acer и DELL
         //10. Нажать кнопку Применить.
+        SearchRequest searchRequest = new SearchRequest();
+        searchRequest.setStartPrice(BigDecimal.valueOf(20000));
+        searchRequest.setEndPrice(BigDecimal.valueOf(25000));
+        searchRequest.setManufacturer(Arrays.asList("Acer", "Dell"));
         yandexSteps.applyFilter(searchRequest);
 
         //11. Проверить, что элементов на странице 10.

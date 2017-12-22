@@ -6,9 +6,15 @@ import java.net.MalformedURLException;
 import static com.Utils.Utils.makeScreenshot;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
+/**
+ * Абстрактный класс в котором инициализируется и закрывается вебрайвер
+ */
 public class Abstract {
 
 
+    /**
+     * Инициализируем вебрайвер
+     */
     public void setup() {
 
         try {
@@ -20,6 +26,9 @@ public class Abstract {
     }
 
 
+    /**
+     * Закрываем вебрайвер
+     */
     public void tearDown() {
 
         makeScreenshot();

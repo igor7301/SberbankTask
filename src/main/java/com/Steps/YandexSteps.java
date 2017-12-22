@@ -10,9 +10,15 @@ import static com.Utils.Utils.makeScreenshot;
 import static com.Utils.Utils.makeScreenshotFullPage;
 
 
+/**
+ * Класс шагов для Yandex страниц
+ */
 public class YandexSteps {
 
 
+    /**
+     * Открывает стратовую страницу яндекса
+     */
     @Step("I open yandex market")
     public void openMarket() {
         new YandexHomePage().openMarket();
@@ -20,6 +26,10 @@ public class YandexSteps {
     }
 
 
+    /**
+     * Применет яндекс фильтр исходя из параметров searchRequest
+     * @param searchRequest параметры поиска для яндекс фильтра
+     */
     @Step("I apply filter with params ... ")
     public void applyFilter(SearchRequest searchRequest) {
 
@@ -47,6 +57,10 @@ public class YandexSteps {
 
     }
 
+    /**
+     * Проверяет количество товаров на странице
+     * @param resultsNumber ожидаемое количество товаров на странице
+     */
     @Step("I verify amount of product items on page ...")
     public void verifyAmountOfResults(int resultsNumber) {
 
@@ -58,31 +72,40 @@ public class YandexSteps {
     }
 
 
+    /**
+     * Производит яндекс поиск по тексту
+     * @param searchText текст для поиска в строке яндекса
+     */
     @Step("I make search with \"{searchText}\" text")
     public void makeSearch(String searchText) {
         new YandexHeader().makeSearch(searchText);
     }
 
+    /**
+     * Проверяет что товар на странице результатов соответсвует ожидаемому
+     * @param searchRequest ожидаемый результат поиска
+     */
     @Step("I verify product item on result page ...")
     public void verifyResults(SearchRequest searchRequest) {
 
         YandexResultPage yandexResultPage = new YandexResultPage();
 
         if (searchRequest.getStartPrice() != null) {
-            //make checks here
+            //добавьте проверку startPrice здесь
         }
 
         if (searchRequest.getEndPrice() != null) {
-            //make checks here
+            //добавьте проверку endPrice здесь
 
         }
 
         if (searchRequest.getManufacturer() != null) {
             for (String manufacture : searchRequest.getManufacturer()) {
-                //make checks here
+                //добавьте проверку всех фирм производителей здесь
             }
         }
 
+        //проверка наименования товара
         if (searchRequest.getProductName() != null) {
             allureAssertThat("Product title on results page should be : " + searchRequest.getProductName(),
                     yandexResultPage.getTitleOfProduct(), Matchers.equalToIgnoringCase(searchRequest.getProductName()),
@@ -94,6 +117,10 @@ public class YandexSteps {
 
     }
 
+    /**
+     * Открывает категорию из главного списка
+     * @param depName назавание категории
+     */
     @Step("I open main department with name \"{depName}\" ")
     public void openMainDepartment(String depName) {
 
@@ -104,6 +131,11 @@ public class YandexSteps {
 
     }
 
+
+    /**
+     * Открывает под-категорию
+     * @param depName название под-категории
+     */
     @Step("I open sub-department with name \"{depName}\" ")
     public void openSubDepartment(String depName) {
 

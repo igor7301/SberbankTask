@@ -4,15 +4,16 @@ import com.ProductItem;
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.ElementsCollection;
 import com.codeborne.selenide.SelenideElement;
-import io.qameta.allure.Step;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static com.codeborne.selenide.Selenide.$;
 import static com.codeborne.selenide.Selenide.$$;
-import static com.codeborne.selenide.WebDriverRunner.getWebDriver;
 
+/**
+ * Одна из версий страницы яндекс маркета
+ */
 public class YandexMarketPage extends YandexMarketAbstractPage {
 
     private static final String HEADER_MAIN = ".header2__main";
