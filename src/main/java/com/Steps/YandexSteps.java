@@ -58,10 +58,12 @@ public class YandexSteps {
     }
 
 
+    @Step("I make search with \"{searchText}\" text")
     public void makeSearch(String searchText) {
         new YandexHeader().makeSearch(searchText);
     }
 
+    @Step("I verify product item on result page ...")
     public void verifyResults(SearchRequest searchRequest) {
 
         YandexResultPage yandexResultPage = new YandexResultPage();
