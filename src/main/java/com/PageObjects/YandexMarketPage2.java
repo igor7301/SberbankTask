@@ -18,23 +18,21 @@ import static com.codeborne.selenide.Selenide.$$;
 /**
  * Created by Igor on 12/21/2017.
  */
-public class YandexMarketPage2 extends   YandexMarketAbstractPage{
+public class YandexMarketPage2 extends YandexMarketAbstractPage {
 
 
     private static final String HEADER_MAIN = ".header2__main";
     private static final String DEPARTMENTS_PANEL = ".n-navigation-vertical.i-bem.n-navigation-vertical_js_inited";
     private static final String MAIN_DEPARTMENTS_LIST = ".topmenu__list .topmenu__item.i-bem.topmenu__item_js_inited";
-    private static final String SUB_DEPARTMENTS_LIST =".topmenu__subwrap .topmenu__sublist";
+    private static final String SUB_DEPARTMENTS_LIST = ".topmenu__subwrap .topmenu__sublist";
     private static final String PRODUCT_ITEMS = ".n-snippet-card2";
     private static final String PRODUCT_ITEM_TITLE = ".n-snippet-card2__title";
-
 
 
     public YandexMarketPage2() {
 
         $(HEADER_MAIN).shouldBe(Condition.visible);
     }
-
 
 
     public void openSubDepartment(String subDepartmentName) {

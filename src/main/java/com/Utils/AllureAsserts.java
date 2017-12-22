@@ -18,7 +18,7 @@ public class AllureAsserts {
 
         LOGGER.info(message);
         Assert.assertThat(message, valueToBeChecked, condition);
-        if(makeScreenshot) {
+        if (makeScreenshot) {
             makeScreenshot();
         }
 

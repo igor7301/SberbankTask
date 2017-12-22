@@ -12,6 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <webdriver.driver>chrome</webdriver.driver>
+        <selenide.browser>chrome</selenide.browser>
         <rerun.failed.tests.count>2</rerun.failed.tests.count>
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>1.5.4</allure.version>
@@ -19,8 +20,16 @@
         <selenide.closeBrowserTimeout>30000</selenide.closeBrowserTimeout>
         <webdriver.chrome.driver>chromedriver.exe</webdriver.chrome.driver>
         <!--<webdriver.chrome.driver>chromedriver_mac</webdriver.chrome.driver>-->
-        <selenide.browser>chrome</selenide.browser>
-
+        <selenide.version>4.4.2</selenide.version>
+        <junit.version>4.12</junit.version>
+        <selenium-java.version>3.4.0</selenium-java.version>
+        <java-hamcrest.version>2.0.0.0</java-hamcrest.version>
+        <allure-maven.version>2.8</allure-maven.version>
+        <log4j-core.version>2.8.2</log4j-core.version>
+        <log4j-api.version>2.8.2</log4j-api.version>
+        <allure-junit4.version>2.0-BETA17</allure-junit4.version>
+        <maven-compiler-plugin.source>1.8</maven-compiler-plugin.source>
+        <ashot.version>1.5.3</ashot.version>
     </properties>
 
     <dependencies>
@@ -28,27 +37,27 @@
         <dependency>
             <groupId>com.codeborne</groupId>
             <artifactId>selenide</artifactId>
-            <version>4.4.2</version>
+            <version>${selenide.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>4.12</version>
+            <version>${junit.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
             <artifactId>selenium-java</artifactId>
-            <version>3.4.0</version>
+            <version>${selenium-java.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.hamcrest</groupId>
             <artifactId>java-hamcrest</artifactId>
-            <version>2.0.0.0</version>
+            <version>${java-hamcrest.version}</version>
         </dependency>
 
 
@@ -56,22 +65,20 @@
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-maven</artifactId>
-            <version>2.8</version>
+            <version>${allure-maven.version}</version>
         </dependency>
 
 
         <dependency>
             <groupId>io.qameta.allure</groupId>
             <artifactId>allure-junit4</artifactId>
-            <version>2.0-BETA17</version>
-            <scope>test</scope>
+            <version>${allure-junit4.version}</version>
         </dependency>
 
         <dependency>
-            <groupId>commons-beanutils</groupId>
-            <artifactId>commons-beanutils</artifactId>
-            <version>1.9.2</version>
-            <scope>test</scope>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-java-commons</artifactId>
+            <version>${allure-junit4.version}</version>
         </dependency>
 
         <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjweaver -->
@@ -84,25 +91,21 @@
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
-            <version>2.8.2</version>
+            <version>${log4j-core.version}</version>
         </dependency>
 
         <dependency>
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-api</artifactId>
-            <version>2.8.2</version>
+            <version>${log4j-api.version}</version>
         </dependency>
-        <dependency>
-            <groupId>io.qameta.allure</groupId>
-            <artifactId>allure-java-commons</artifactId>
-            <version>2.0-BETA17</version>
-        </dependency>
+
 
         <!-- https://mvnrepository.com/artifact/ru.yandex.qatools.ashot/ashot -->
         <dependency>
             <groupId>ru.yandex.qatools.ashot</groupId>
             <artifactId>ashot</artifactId>
-            <version>1.5.3</version>
+            <version>${ashot.version}</version>
         </dependency>
 
 
@@ -126,10 +129,7 @@
 
                         <!--Timeout (in milliseconds) for closing/killing browser.-->
                         <selenide.closeBrowserTimeout>${selenide.closeBrowserTimeout}</selenide.closeBrowserTimeout>
-
                     </systemPropertyVariables>
-
-
                     <testFailureIgnore>false</testFailureIgnore>
                     <skip>true</skip>
                 </configuration>
@@ -142,7 +142,6 @@
                         <include>**/*Test.java</include>
                         <include>**/Test*.java</include>
                     </includes>
-
                     <rerunFailingTestsCount>${rerun.failed.tests.count}</rerunFailingTestsCount>
                     <systemPropertyVariables>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
@@ -154,8 +153,6 @@
                         <!--Timeout (in milliseconds) for closing/killing browser.-->
                         <selenide.closeBrowserTimeout>${selenide.closeBrowserTimeout}</selenide.closeBrowserTimeout>
                     </systemPropertyVariables>
-
-
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver"-${aspectj.version}.jar
                     </argLine>
@@ -194,8 +191,8 @@
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>2.3.2</version>
                 <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
+                    <source>${maven-compiler-plugin.source}</source>
+                    <target>${maven-compiler-plugin.source}</target>
                     <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
@@ -203,7 +200,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.8</version>
+                <version>${allure-maven.version}</version>
             </plugin>
         </plugins>
     </build>
@@ -213,7 +210,7 @@
             <plugin>
                 <groupId>io.qameta.allure</groupId>
                 <artifactId>allure-maven</artifactId>
-                <version>2.8</version>
+                <version>${allure-maven.version}</version>
             </plugin>
         </plugins>
     </reporting>

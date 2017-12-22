@@ -12,9 +12,9 @@ import static com.codeborne.selenide.Selenide.$$;
 
 public class YandexResultPage {
 
-    private static final String  TITLE_OF_PRODUCT = ".n-title__text";
+    private static final String TITLE_OF_PRODUCT = ".n-title__text";
 
-    public String getTitleOfProduct () {
+    public String getTitleOfProduct() {
         return $(TITLE_OF_PRODUCT).getText();
     }
 

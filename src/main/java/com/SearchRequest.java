@@ -5,7 +5,7 @@ import java.util.List;
 
 public class SearchRequest {
 
-    private String  productName;
+    private String productName;
     private BigDecimal startPrice;
     private BigDecimal endPrice;
     private List<String> manufacturer;

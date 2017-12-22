@@ -67,12 +67,10 @@ public class Utils {
         try {
             Selenide.executeJavaScript("document.body.scrollTop = 0");
             Selenide.executeJavaScript("document.documentElement.scrollTop = 0");
-        }
-        catch (Exception e) {
+        } catch (Exception e) {
             LOGGER.warn("Can't scroll page to top");
             e.printStackTrace();
-        }
-        catch (Error e) {
+        } catch (Error e) {
             LOGGER.warn("Can't scroll page to top");
             e.printStackTrace();
         }

@@ -18,7 +18,7 @@ public class YandexMarketPageFactory {
 
     public static YandexMarketAbstractPage getPage() {
 
-        try  {
+        try {
             $(MARKER_ALL_DEPARTMENTS_BTN).waitUntil(Condition.visible, TIMEOUT_IN_MILLISECONDS_1000);
             return new YandexMarketPage();
         }

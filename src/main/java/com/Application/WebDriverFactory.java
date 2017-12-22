@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class WebDriverFactory {
 
-    public  static  WebDriver getInstance() throws MalformedURLException {
+    public static WebDriver getInstance() throws MalformedURLException {
 
         return getChromeDriver();
 
