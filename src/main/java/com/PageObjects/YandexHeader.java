@@ -12,7 +12,6 @@ public class YandexHeader {
 
     private static final String SEARCH_FIELD = "#header-search";
 
-    @Step("I make search with \"{searchText}\" text")
     public void makeSearch(String searchText) {
         $(SEARCH_FIELD).clear();
         $(SEARCH_FIELD).sendKeys(searchText);
