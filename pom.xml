@@ -12,7 +12,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <webdriver.driver>chrome</webdriver.driver>
-        <rerun.failed.tests.count>0</rerun.failed.tests.count>
+        <rerun.failed.tests.count>2</rerun.failed.tests.count>
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>1.5.4</allure.version>
         <selenide.timeout>40000</selenide.timeout>
@@ -196,6 +196,7 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                    <encoding>${project.build.sourceEncoding}</encoding>
                 </configuration>
             </plugin>
 
