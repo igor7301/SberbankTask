@@ -41,7 +41,7 @@ public class WebDriverFactory {
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
-        options.addArguments("--start-maximized");
+        //options.addArguments("start-fullscreen");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
         return new ChromeDriver(capabilities);
 
@@ -55,7 +55,7 @@ public class WebDriverFactory {
 
         DesiredCapabilities capabilities = DesiredCapabilities.firefox();
         FirefoxOptions options = new FirefoxOptions();
-        options.addArguments("--start-maximized");
+        //options.addArguments("start-fullscreen");
         capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
         return  new FirefoxDriver(capabilities);
 
