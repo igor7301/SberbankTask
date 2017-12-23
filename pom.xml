@@ -11,8 +11,7 @@
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <webdriver.driver>chrome</webdriver.driver>
-        <selenide.browser>chrome</selenide.browser>
+        <expected.browser>chrome</expected.browser>
         <rerun.failed.tests.count>2</rerun.failed.tests.count>
         <aspectj.version>1.8.10</aspectj.version>
         <allure.version>1.5.4</allure.version>
@@ -20,6 +19,8 @@
         <selenide.closeBrowserTimeout>30000</selenide.closeBrowserTimeout>
         <webdriver.chrome.driver>chromedriver.exe</webdriver.chrome.driver>
         <!--<webdriver.chrome.driver>chromedriver_mac</webdriver.chrome.driver>-->
+        <webdriver.gecko.driver>geckodriver.exe</webdriver.gecko.driver>
+        <!--<webdriver.gecko.driver>geckodriver_mac</webdriver.gecko.driver>-->
         <selenide.version>4.4.2</selenide.version>
         <junit.version>4.12</junit.version>
         <selenium-java.version>3.4.0</selenium-java.version>
@@ -108,7 +109,6 @@
             <version>${ashot.version}</version>
         </dependency>
 
-
     </dependencies>
 
 
@@ -120,14 +120,10 @@
                 <version>2.19.1</version>
                 <configuration>
                     <systemPropertyVariables>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
+                        <expected.browser>${expected.browser}</expected.browser>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                        <selenide.browser>${selenide.browser}</selenide.browser>
-
-                        <!--timeout for waiting elements-->
+                        <webdriver.gecko.driver>${webdriver.gecko.driver}</webdriver.gecko.driver>
                         <selenide.timeout>${selenide.timeout}</selenide.timeout>
-
-                        <!--Timeout (in milliseconds) for closing/killing browser.-->
                         <selenide.closeBrowserTimeout>${selenide.closeBrowserTimeout}</selenide.closeBrowserTimeout>
                     </systemPropertyVariables>
                     <testFailureIgnore>false</testFailureIgnore>
@@ -141,16 +137,14 @@
                     <includes>
                         <include>**/*Test.java</include>
                         <include>**/Test*.java</include>
+                        <include>**/*Test*.java</include>
                     </includes>
                     <rerunFailingTestsCount>${rerun.failed.tests.count}</rerunFailingTestsCount>
                     <systemPropertyVariables>
+                        <expected.browser>${expected.browser}</expected.browser>
                         <webdriver.chrome.driver>${webdriver.chrome.driver}</webdriver.chrome.driver>
-                        <webdriver.driver>${webdriver.driver}</webdriver.driver>
-
-                        <!--timeout for waiting elements -->
+                        <webdriver.gecko.driver>${webdriver.gecko.driver}</webdriver.gecko.driver>
                         <selenide.timeout>${selenide.timeout}</selenide.timeout>
-
-                        <!--Timeout (in milliseconds) for closing/killing browser.-->
                         <selenide.closeBrowserTimeout>${selenide.closeBrowserTimeout}</selenide.closeBrowserTimeout>
                     </systemPropertyVariables>
                     <argLine>

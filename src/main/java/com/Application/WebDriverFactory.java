@@ -1,10 +1,14 @@
 package com.Application;
 
+import com.Utils.Browsers;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.events.EventFiringWebDriver;
-import java.net.MalformedURLException;
+import static com.Utils.Browsers.CHROME;
+import static com.Utils.Browsers.FIREFOX;
 
 
 /**
@@ -14,25 +18,46 @@ public class WebDriverFactory {
 
     /**
      * @return инстанс вебрайвера
-     * @throws MalformedURLException
      */
-    public static WebDriver getInstance() throws MalformedURLException {
-        return getChromeDriver();
+    public static WebDriver getInstance() {
+
+        Browsers expectedBrowser = Configuration.getBrowser();
+
+        if (expectedBrowser == CHROME) {
+            return getChromeDriver();
+        }
+        else if (expectedBrowser == FIREFOX) {
+            return getFirefoxDriver();
+        }
+
+        throw new RuntimeException("Can't find browser :  " + expectedBrowser);
     }
 
     /**
      * Создает инстанс chrome вебрайвера
      * @return chrome вебрайвер
-     * @throws MalformedURLException
      */
-    private static WebDriver getChromeDriver() throws MalformedURLException {
+    private static WebDriver getChromeDriver()  {
 
         DesiredCapabilities capabilities = DesiredCapabilities.chrome();
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--start-maximized");
         capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+        return new ChromeDriver(capabilities);
 
-        return new EventFiringWebDriver(new ChromeWebDriverProvider().createDriver(capabilities))
-                .register(new CustomWebDriverEventListener());
+    }
+
+    /**
+     * Создает инстанс firefox вебрайвера
+     * @return firefox вебрайвер
+     */
+    private static WebDriver getFirefoxDriver() {
+
+        DesiredCapabilities capabilities = DesiredCapabilities.firefox();
+        FirefoxOptions options = new FirefoxOptions();
+        options.addArguments("--start-maximized");
+        capabilities.setCapability(FirefoxOptions.FIREFOX_OPTIONS, options);
+        return  new FirefoxDriver(capabilities);
+
     }
 }

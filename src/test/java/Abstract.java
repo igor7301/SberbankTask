@@ -1,8 +1,6 @@
 import com.Application.WebDriverFactory;
 import com.codeborne.selenide.WebDriverRunner;
 
-import java.net.MalformedURLException;
-
 import static com.Utils.Utils.makeScreenshot;
 import static com.codeborne.selenide.WebDriverRunner.closeWebDriver;
 
@@ -16,15 +14,8 @@ public class Abstract {
      * Инициализируем вебрайвер
      */
     public void setup() {
-
-        try {
-            WebDriverRunner.setWebDriver(WebDriverFactory.getInstance());
-        } catch (MalformedURLException e) {
-            e.printStackTrace();
-        }
-
+        WebDriverRunner.setWebDriver(WebDriverFactory.getInstance());
     }
-
 
     /**
      * Закрываем вебрайвер
